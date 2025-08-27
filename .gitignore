@@ -1,0 +1,29 @@
+# Vivado 생성 파일들
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.tmp/
+
+# 빌드 결과물
+*.bit
+*.ltx
+*.rpt
+*.dcp
+*.hwdef
+
+# 시뮬레이션 파일
+xsim.dir/
+*.wdb
+*.wcfg
+
+# 로그 파일
+vivado*.log
+vivado*.jou
+webtalk*
+
+# OS 파일
+.DS_Store
+Thumbs.db
