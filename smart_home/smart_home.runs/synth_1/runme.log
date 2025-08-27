@@ -7,12 +7,12 @@
   **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Tue Aug 26 14:48:51 2025
+  **** Start of session at: Wed Aug 27 11:01:45 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source lcd_top.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1487.445 ; gain = 13.902 ; free physical = 2864 ; free virtual = 12097
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1486.035 ; gain = 41.840 ; free physical = 2346 ; free virtual = 12887
 Command: read_checkpoint -auto_incremental -incremental /home/psh/smart_home_project/smart_home/smart_home.srcs/utils_1/imports/synth_1/lcd_top.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from /home/psh/smart_home_project/smart_home/smart_home.srcs/utils_1/imports/synth_1/lcd_top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,9 +25,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 20718
+INFO: [Synth 8-7075] Helper process launched with PID 173638
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2091.348 ; gain = 429.707 ; free physical = 1924 ; free virtual = 11163
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2089.094 ; gain = 427.832 ; free physical = 1447 ; free virtual = 11992
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'lcd_top' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:23]
 INFO: [Synth 8-6157] synthesizing module 'btn_cntr' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:265]
@@ -44,37 +44,39 @@ WARNING: [Synth 8-7071] port 'btn_nedge' of module 'btn_cntr' is unconnected for
 WARNING: [Synth 8-7023] instance 'btn2' of module 'btn_cntr' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:35]
 WARNING: [Synth 8-7071] port 'btn_nedge' of module 'btn_cntr' is unconnected for instance 'btn3' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:36]
 WARNING: [Synth 8-7023] instance 'btn3' of module 'btn_cntr' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:36]
-INFO: [Synth 8-6157] synthesizing module 'i2c_lcd_send_byte' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:955]
+INFO: [Synth 8-6157] synthesizing module 'i2c_lcd_send_byte' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1058]
 INFO: [Synth 8-6157] synthesizing module 'clock_div_100' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:66]
 INFO: [Synth 8-6155] done synthesizing module 'clock_div_100' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:66]
-WARNING: [Synth 8-7071] port 'clk_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:974]
-WARNING: [Synth 8-7071] port 'pedge_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:974]
-WARNING: [Synth 8-7023] instance 'us_clk' of module 'clock_div_100' has 5 connections declared, but only 3 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:974]
-WARNING: [Synth 8-7071] port 'n_edge' of module 'edge_detector_p' is unconnected for instance 'send_ed' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:984]
-WARNING: [Synth 8-7023] instance 'send_ed' of module 'edge_detector_p' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:984]
-INFO: [Synth 8-6157] synthesizing module 'I2C_master' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:780]
-WARNING: [Synth 8-7071] port 'clk_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:799]
-WARNING: [Synth 8-7071] port 'pedge_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:799]
-WARNING: [Synth 8-7023] instance 'us_clk' of module 'clock_div_100' has 5 connections declared, but only 3 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:799]
-WARNING: [Synth 8-7071] port 'n_edge' of module 'edge_detector_p' is unconnected for instance 'comm_start_ed' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:806]
-WARNING: [Synth 8-7023] instance 'comm_start_ed' of module 'edge_detector_p' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:806]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:868]
-INFO: [Synth 8-6155] done synthesizing module 'I2C_master' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:780]
-WARNING: [Synth 8-7071] port 'led' of module 'I2C_master' is unconnected for instance 'master' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1001]
-WARNING: [Synth 8-7023] instance 'master' of module 'I2C_master' has 9 connections declared, but only 8 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1001]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1023]
-INFO: [Synth 8-6155] done synthesizing module 'i2c_lcd_send_byte' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:955]
-INFO: [Synth 8-6157] synthesizing module 'keypad_cntr' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:660]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:738]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:719]
-INFO: [Synth 8-6155] done synthesizing module 'keypad_cntr' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:660]
-WARNING: [Synth 8-7071] port 'n_edge' of module 'edge_detector_p' is unconnected for instance 'key_valid_ed' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:68]
-WARNING: [Synth 8-7023] instance 'key_valid_ed' of module 'edge_detector_p' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:68]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:136]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:103]
+WARNING: [Synth 8-7071] port 'clk_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1077]
+WARNING: [Synth 8-7071] port 'pedge_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1077]
+WARNING: [Synth 8-7023] instance 'us_clk' of module 'clock_div_100' has 5 connections declared, but only 3 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1077]
+WARNING: [Synth 8-7071] port 'n_edge' of module 'edge_detector_p' is unconnected for instance 'send_ed' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1087]
+WARNING: [Synth 8-7023] instance 'send_ed' of module 'edge_detector_p' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1087]
+INFO: [Synth 8-6157] synthesizing module 'I2C_master' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:883]
+WARNING: [Synth 8-7071] port 'clk_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:902]
+WARNING: [Synth 8-7071] port 'pedge_div_100' of module 'clock_div_100' is unconnected for instance 'us_clk' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:902]
+WARNING: [Synth 8-7023] instance 'us_clk' of module 'clock_div_100' has 5 connections declared, but only 3 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:902]
+WARNING: [Synth 8-7071] port 'n_edge' of module 'edge_detector_p' is unconnected for instance 'comm_start_ed' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:909]
+WARNING: [Synth 8-7023] instance 'comm_start_ed' of module 'edge_detector_p' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:909]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:971]
+INFO: [Synth 8-6155] done synthesizing module 'I2C_master' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:883]
+WARNING: [Synth 8-7071] port 'led' of module 'I2C_master' is unconnected for instance 'master' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1104]
+WARNING: [Synth 8-7023] instance 'master' of module 'I2C_master' has 9 connections declared, but only 8 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1104]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1126]
+INFO: [Synth 8-6155] done synthesizing module 'i2c_lcd_send_byte' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1058]
+INFO: [Synth 8-6157] synthesizing module 'keypad_door_cntr' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:763]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:841]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:822]
+INFO: [Synth 8-6155] done synthesizing module 'keypad_door_cntr' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:763]
+WARNING: [Synth 8-7071] port 'n_edge' of module 'edge_detector_p' is unconnected for instance 'key_valid_ed' [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:84]
+WARNING: [Synth 8-7023] instance 'key_valid_ed' of module 'edge_detector_p' has 5 connections declared, but only 4 given [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:84]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:220]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:390]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:423]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:163]
 INFO: [Synth 8-6155] done synthesizing module 'lcd_top' (0#1) [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/lcd_top.v:23]
-WARNING: [Synth 8-3848] Net led in module/entity I2C_master does not have driver. [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:786]
-WARNING: [Synth 8-3848] Net led in module/entity i2c_lcd_send_byte does not have driver. [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:962]
+WARNING: [Synth 8-3848] Net led in module/entity I2C_master does not have driver. [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:889]
+WARNING: [Synth 8-3848] Net led in module/entity i2c_lcd_send_byte does not have driver. [/home/psh/smart_home_project/smart_home/smart_home.srcs/sources_1/new/common.v:1065]
 WARNING: [Synth 8-7129] Port led[15] in module I2C_master is either unconnected or has no load
 WARNING: [Synth 8-7129] Port led[14] in module I2C_master is either unconnected or has no load
 WARNING: [Synth 8-7129] Port led[13] in module I2C_master is either unconnected or has no load
@@ -108,18 +110,18 @@ WARNING: [Synth 8-7129] Port led[2] in module i2c_lcd_send_byte is either unconn
 WARNING: [Synth 8-7129] Port led[1] in module i2c_lcd_send_byte is either unconnected or has no load
 WARNING: [Synth 8-7129] Port led[0] in module i2c_lcd_send_byte is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2165.316 ; gain = 503.676 ; free physical = 1844 ; free virtual = 11077
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2170.062 ; gain = 508.801 ; free physical = 1365 ; free virtual = 11907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2183.129 ; gain = 521.488 ; free physical = 1851 ; free virtual = 11085
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2187.875 ; gain = 526.613 ; free physical = 1363 ; free virtual = 11905
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2183.129 ; gain = 521.488 ; free physical = 1851 ; free virtual = 11085
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2187.875 ; gain = 526.613 ; free physical = 1363 ; free virtual = 11905
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2183.129 ; gain = 0.000 ; free physical = 1851 ; free virtual = 11085
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2187.875 ; gain = 0.000 ; free physical = 1363 ; free virtual = 11905
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -130,30 +132,30 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/lcd_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2341.879 ; gain = 0.000 ; free physical = 1861 ; free virtual = 11087
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2336.625 ; gain = 0.000 ; free physical = 1359 ; free virtual = 11910
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2341.879 ; gain = 0.000 ; free physical = 1861 ; free virtual = 11087
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2336.625 ; gain = 0.000 ; free physical = 1359 ; free virtual = 11910
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2341.879 ; gain = 680.238 ; free physical = 1875 ; free virtual = 11108
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2336.625 ; gain = 675.363 ; free physical = 1375 ; free virtual = 11928
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2349.883 ; gain = 688.242 ; free physical = 1875 ; free virtual = 11108
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2344.629 ; gain = 683.367 ; free physical = 1375 ; free virtual = 11928
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2349.883 ; gain = 688.242 ; free physical = 1875 ; free virtual = 11108
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2344.629 ; gain = 683.367 ; free physical = 1375 ; free virtual = 11928
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'keypad_cntr'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'keypad_door_cntr'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -164,9 +166,9 @@ INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'keypa
                   SCAN_3 |                            01000 |                            01000
              KEY_PROCESS |                            10000 |                            10000
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'keypad_cntr'
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'keypad_door_cntr'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2349.883 ; gain = 688.242 ; free physical = 1894 ; free virtual = 11121
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2344.629 ; gain = 683.367 ; free physical = 1391 ; free virtual = 11954
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -177,30 +179,34 @@ Detailed RTL Component Info :
 	   2 Input    8 Bit       Adders := 1     
 	   2 Input    6 Bit       Adders := 2     
 	   2 Input    3 Bit       Adders := 2     
+	   2 Input    2 Bit       Adders := 1     
 +---Registers : 
 	               11 Bit    Registers := 1     
-	                8 Bit    Registers := 2     
+	                8 Bit    Registers := 4     
 	                7 Bit    Registers := 2     
-	                6 Bit    Registers := 6     
-	                4 Bit    Registers := 2     
+	                6 Bit    Registers := 4     
+	                4 Bit    Registers := 6     
 	                3 Bit    Registers := 2     
-	                1 Bit    Registers := 46    
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 53    
 +---Muxes : 
-	   2 Input   11 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 1     
-	   7 Input    8 Bit        Muxes := 1     
-	   7 Input    7 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 5     
+	   7 Input    8 Bit        Muxes := 2     
+	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 1     
 	   2 Input    6 Bit        Muxes := 3     
 	   7 Input    6 Bit        Muxes := 1     
-	   5 Input    6 Bit        Muxes := 1     
+	   6 Input    6 Bit        Muxes := 1     
+	   4 Input    6 Bit        Muxes := 1     
 	   6 Input    5 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 5     
 	   6 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 31    
-	   7 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 60    
+	   7 Input    1 Bit        Muxes := 2     
 	   6 Input    1 Bit        Muxes := 3     
-	   4 Input    1 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 1     
 	   8 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -225,30 +231,27 @@ WARNING: [Synth 8-7129] Port led[11] in module lcd_top is either unconnected or 
 WARNING: [Synth 8-7129] Port led[10] in module lcd_top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port led[9] in module lcd_top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port led[8] in module lcd_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port led[7] in module lcd_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port led[6] in module lcd_top is either unconnected or has no load
-WARNING: [Synth 8-7129] Port led[5] in module lcd_top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port led[4] in module lcd_top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2349.883 ; gain = 688.242 ; free physical = 1870 ; free virtual = 11109
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2344.629 ; gain = 683.367 ; free physical = 1393 ; free virtual = 11955
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2365.883 ; gain = 704.242 ; free physical = 1824 ; free virtual = 11063
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2369.629 ; gain = 708.367 ; free physical = 1382 ; free virtual = 11929
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2401.930 ; gain = 740.289 ; free physical = 1798 ; free virtual = 11029
+Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2415.668 ; gain = 754.406 ; free physical = 1339 ; free virtual = 11886
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2401.930 ; gain = 740.289 ; free physical = 1798 ; free virtual = 11029
+Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 2415.668 ; gain = 754.406 ; free physical = 1337 ; free virtual = 11884
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -266,37 +269,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -313,44 +316,44 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |    31|
-|3     |LUT1   |     5|
-|4     |LUT2   |    51|
-|5     |LUT3   |    13|
-|6     |LUT4   |    60|
-|7     |LUT5   |    29|
-|8     |LUT6   |    82|
-|9     |FDCE   |   171|
+|2     |CARRY4 |    47|
+|3     |LUT1   |     4|
+|4     |LUT2   |   143|
+|5     |LUT3   |    33|
+|6     |LUT4   |    76|
+|7     |LUT5   |    52|
+|8     |LUT6   |   181|
+|9     |FDCE   |   264|
 |10    |FDPE   |    12|
 |11    |FDRE   |    77|
 |12    |IBUF   |     9|
-|13    |OBUF   |    10|
-|14    |OBUFT  |    12|
+|13    |OBUF   |    13|
+|14    |OBUFT  |     9|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.742 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.480 ; gain = 890.219 ; free physical = 1227 ; free virtual = 11780
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 12 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2540.742 ; gain = 720.352 ; free physical = 1704 ; free virtual = 10936
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.750 ; gain = 879.102 ; free physical = 1704 ; free virtual = 10936
+Synthesis finished with 0 errors, 0 critical warnings and 9 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 2551.480 ; gain = 741.469 ; free physical = 1228 ; free virtual = 11779
+Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2551.488 ; gain = 890.219 ; free physical = 1228 ; free virtual = 11779
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2540.750 ; gain = 0.000 ; free physical = 1704 ; free virtual = 10936
-INFO: [Netlist 29-17] Analyzing 31 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2551.488 ; gain = 0.000 ; free physical = 1334 ; free virtual = 11885
+INFO: [Netlist 29-17] Analyzing 47 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 4 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2596.770 ; gain = 0.000 ; free physical = 1882 ; free virtual = 11114
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2607.508 ; gain = 0.000 ; free physical = 1395 ; free virtual = 11945
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: b628678f
+Synth Design complete | Checksum: 61c87947
 INFO: [Common 17-83] Releasing license: Synthesis
-45 Infos, 68 Warnings, 0 Critical Warnings and 0 Errors encountered.
+47 Infos, 65 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:33 . Memory (MB): peak = 2596.770 ; gain = 1103.387 ; free physical = 1882 ; free virtual = 11114
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1674.340; main = 1674.340; forked = 243.490
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3270.781; main = 2596.773; forked = 920.895
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2620.781 ; gain = 0.000 ; free physical = 1882 ; free virtual = 11114
+synth_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:37 . Memory (MB): peak = 2607.508 ; gain = 1114.535 ; free physical = 1395 ; free virtual = 11945
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1952.938; main = 1760.317; forked = 268.203
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3427.566; main = 2607.512; forked = 920.895
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2631.520 ; gain = 0.000 ; free physical = 1395 ; free virtual = 11945
 INFO: [Common 17-1381] The checkpoint '/home/psh/smart_home_project/smart_home/smart_home.runs/synth_1/lcd_top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file lcd_top_utilization_synth.rpt -pb lcd_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Aug 26 14:49:35 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Aug 27 11:02:34 2025...

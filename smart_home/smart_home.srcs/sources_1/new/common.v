@@ -744,7 +744,7 @@ module keypad_cntr(
                         8'b0010_0010 : key_value = 4'h2; // 2
                         8'b0010_0100 : key_value = 4'h3; // 3
                         8'b0010_1000 : key_value = 4'hE; // E *
-                        8'b0100_0001 : key_value = 4'h4; // 4
+                        8'b0100_0001 : key_value = 4'h4; // 4 
                         8'b0100_0010 : key_value = 4'h5; // 5
                         8'b0100_0100 : key_value = 4'h6; // 6
                         8'b0100_1000 : key_value = 4'hb; // b -
@@ -752,6 +752,109 @@ module keypad_cntr(
                         8'b1000_0010 : key_value = 4'h8; // 8
                         8'b1000_0100 : key_value = 4'h9; // 9
                         8'b1000_1000 : key_value = 4'hA; // A +
+                    endcase
+                end                   
+            endcase
+        end
+    end
+    
+endmodule
+
+module keypad_door_cntr(
+    input clk, reset_p,
+    input [3:0] row,            // Keypad row 입력 (4개)
+    output reg [3:0] column,    // Keypad column 출력 (4개)
+    output reg [3:0] key_value, // 눌린 키 값 (0~F)
+    output reg key_valid        // 키 입력 유효 신호
+);
+
+    // FSM 상태 정의
+    localparam [4:0]SCAN_0       = 5'b00001;
+    localparam [4:0]SCAN_1       = 5'b00010;
+    localparam [4:0]SCAN_2       = 5'b00100;
+    localparam [4:0]SCAN_3       = 5'b01000;
+    localparam [4:0]KEY_PROCESS  = 5'b10000;
+    
+    // 약 10ms 분주 카운터
+    reg [19:0] clk_10ms;  
+    always @(posedge clk) 
+        clk_10ms = clk_10ms + 1;
+    
+    // 10ms 신호 edge 검출기
+    wire clk_10ms_nedge, clk_10ms_pedge;
+    edge_detector_p ms_10_ed(
+        .clk(clk), 
+        .reset_p(reset_p), 
+        .cp(clk_10ms[19]),
+        .p_edge(clk_10ms_pedge),  // 상승엣지
+        .n_edge(clk_10ms_nedge)   // 하강엣지
+    );
+    
+    // FSM 상태 레지스터
+    reg [4:0] state, next_state;
+    always @(posedge clk, posedge reset_p) begin
+        if(reset_p) 
+            state = SCAN_0;
+        else if(clk_10ms_pedge) 
+            state = next_state;
+    end
+    
+    // FSM 상태 전이(next_state)
+    always @* begin
+        case(state)
+            SCAN_0      : next_state = (row == 0) ? SCAN_1 : KEY_PROCESS;
+            SCAN_1      : next_state = (row == 0) ? SCAN_2 : KEY_PROCESS;
+            SCAN_2      : next_state = (row == 0) ? SCAN_3 : KEY_PROCESS;
+            SCAN_3      : next_state = (row == 0) ? SCAN_0 : KEY_PROCESS;
+            KEY_PROCESS : next_state = (row == 0) ? SCAN_0 : KEY_PROCESS;
+            default     : next_state = SCAN_1;
+        endcase
+    end
+    
+    // FSM 출력 및 키 값 처리
+    always @(posedge clk, posedge reset_p) begin
+        if(reset_p) begin
+            column    = 4'b0001; // 첫 번째 column 활성화
+            key_value = 0;
+            key_valid = 0;
+        end
+        else if(clk_10ms_nedge) begin
+            case(state)
+                SCAN_0: begin
+                    column    = 4'b0001;
+                    key_valid = 0;
+                end
+                SCAN_1: begin
+                    column    = 4'b0010;
+                    key_valid = 0;
+                end
+                SCAN_2: begin
+                    column    = 4'b0100;
+                    key_valid = 0;
+                end
+                SCAN_3: begin
+                    column    = 4'b1000;
+                    key_valid = 0;
+                end
+                KEY_PROCESS: begin   
+                    key_valid = 1; // 키가 눌린 경우
+                    case({column, row}) // 눌린 key mapping
+                        8'b0001_0001 : key_value = 4'hC; 
+                        8'b0001_0010 : key_value = 4'hC; 
+                        8'b0001_0100 : key_value = 4'hC; 
+                        8'b0001_1000 : key_value = 4'hC; 
+                        8'b0010_0001 : key_value = 4'h3; 
+                        8'b0010_0010 : key_value = 4'h6; 
+                        8'b0010_0100 : key_value = 4'h9; 
+                        8'b0010_1000 : key_value = 4'hB; 
+                        8'b0100_0001 : key_value = 4'h2; 
+                        8'b0100_0010 : key_value = 4'h5; 
+                        8'b0100_0100 : key_value = 4'h8; 
+                        8'b0100_1000 : key_value = 4'h0; 
+                        8'b1000_0001 : key_value = 4'h1; 
+                        8'b1000_0010 : key_value = 4'h4; 
+                        8'b1000_0100 : key_value = 4'h7; 
+                        8'b1000_1000 : key_value = 4'hA; 
                     endcase
                 end                   
             endcase
