@@ -87,7 +87,7 @@ set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports {btn[3]}
 #set_property -dict { PACKAGE_PIN B15   IOSTANDARD LVCMOS33 } [get_ports {JB[2]}];#Sch name = JB3
 #set_property -dict { PACKAGE_PIN B16   IOSTANDARD LVCMOS33 } [get_ports {JB[3]}];#Sch name = JB4
 #set_property -dict { PACKAGE_PIN A15   IOSTANDARD LVCMOS33 } [get_ports {JB[4]}];#Sch name = JB7
-#set_property -dict { PACKAGE_PIN A17   IOSTANDARD LVCMOS33 } [get_ports {JB[5]}];#Sch name = JB8
+set_property -dict { PACKAGE_PIN A17   IOSTANDARD LVCMOS33 } [get_ports sg90];#Sch name = JB8
 set_property -dict { PACKAGE_PIN C15   IOSTANDARD LVCMOS33 } [get_ports scl];#Sch name = JB9
 set_property -dict { PACKAGE_PIN C16   IOSTANDARD LVCMOS33 } [get_ports sda];#Sch name = JB10
 

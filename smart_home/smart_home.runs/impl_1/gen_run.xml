@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1756262056">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1756273010">
   <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-RQS" Name="lcd_top_postroute_physopted.rqs"/>
-  <File Type="ROUTE-RQS" Name="lcd_top_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="min_motor_lcd_top_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS" Name="min_motor_lcd_top_routed.rqs"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="BG-BGN" Name="lcd_top.bgn"/>
-  <File Type="BITSTR-SYSDEF" Name="lcd_top.sysdef"/>
+  <File Type="BG-BGN" Name="min_motor_lcd_top.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="min_motor_lcd_top.sysdef"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="lcd_top.ltx"/>
-  <File Type="RBD_FILE" Name="lcd_top.rbd"/>
-  <File Type="NPI_FILE" Name="lcd_top.npi"/>
-  <File Type="RNPI_FILE" Name="lcd_top.rnpi"/>
-  <File Type="CFI_FILE" Name="lcd_top.cfi"/>
-  <File Type="RCFI_FILE" Name="lcd_top.rcfi"/>
-  <File Type="PL-PDI-FILE" Name="lcd_top_pld.pdi"/>
-  <File Type="BOOT-PDI-FILE" Name="lcd_top_boot.pdi"/>
-  <File Type="RDI-RDI" Name="lcd_top.vdi"/>
-  <File Type="PDI-FILE" Name="lcd_top.pdi"/>
-  <File Type="BITSTR-MMI" Name="lcd_top.mmi"/>
-  <File Type="BITSTR-BMM" Name="lcd_top_bd.bmm"/>
-  <File Type="BITSTR-NKY" Name="lcd_top.nky"/>
-  <File Type="BITSTR-RBT" Name="lcd_top.rbt"/>
-  <File Type="BITSTR-MSK" Name="lcd_top.msk"/>
-  <File Type="BG-BIN" Name="lcd_top.bin"/>
+  <File Type="BITSTR-LTX" Name="min_motor_lcd_top.ltx"/>
+  <File Type="RBD_FILE" Name="min_motor_lcd_top.rbd"/>
+  <File Type="NPI_FILE" Name="min_motor_lcd_top.npi"/>
+  <File Type="RNPI_FILE" Name="min_motor_lcd_top.rnpi"/>
+  <File Type="CFI_FILE" Name="min_motor_lcd_top.cfi"/>
+  <File Type="RCFI_FILE" Name="min_motor_lcd_top.rcfi"/>
+  <File Type="PL-PDI-FILE" Name="min_motor_lcd_top_pld.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="min_motor_lcd_top_boot.pdi"/>
+  <File Type="RDI-RDI" Name="min_motor_lcd_top.vdi"/>
+  <File Type="PDI-FILE" Name="min_motor_lcd_top.pdi"/>
+  <File Type="BITSTR-MMI" Name="min_motor_lcd_top.mmi"/>
+  <File Type="BITSTR-BMM" Name="min_motor_lcd_top_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="min_motor_lcd_top.nky"/>
+  <File Type="BITSTR-RBT" Name="min_motor_lcd_top.rbt"/>
+  <File Type="BITSTR-MSK" Name="min_motor_lcd_top.msk"/>
+  <File Type="BG-BIN" Name="min_motor_lcd_top.bin"/>
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
-  <File Type="BG-BIT" Name="lcd_top.bit"/>
+  <File Type="BG-BIT" Name="min_motor_lcd_top.bit"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="lcd_top_bus_skew_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="lcd_top_bus_skew_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="lcd_top_bus_skew_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="lcd_top_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="lcd_top_timing_summary_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING" Name="lcd_top_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="lcd_top_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="lcd_top_postroute_physopt.dcp"/>
-  <File Type="BG-DRC" Name="lcd_top.drc"/>
-  <File Type="ROUTE-RQS-PB" Name="lcd_top_rqs_routed.pb"/>
-  <File Type="ROUTE-BUS-SKEW-RPX" Name="lcd_top_bus_skew_routed.rpx"/>
-  <File Type="ROUTE-BUS-SKEW-PB" Name="lcd_top_bus_skew_routed.pb"/>
-  <File Type="ROUTE-BUS-SKEW" Name="lcd_top_bus_skew_routed.rpt"/>
-  <File Type="ROUTE-CLK" Name="lcd_top_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-SIMILARITY" Name="lcd_top_incremental_reuse_routed.rpt"/>
-  <File Type="ROUTE-TIMING-RPX" Name="lcd_top_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-TIMING-PB" Name="lcd_top_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="lcd_top_timing_summary_routed.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="lcd_top_route_status.pb"/>
-  <File Type="ROUTE-STATUS" Name="lcd_top_route_status.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="lcd_top_power_routed.rpx"/>
-  <File Type="ROUTE-PWR-SUM" Name="lcd_top_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="lcd_top_power_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="lcd_top_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="lcd_top_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="lcd_top_methodology_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-RPX" Name="lcd_top_drc_routed.rpx"/>
-  <File Type="ROUTE-DRC-PB" Name="lcd_top_drc_routed.pb"/>
-  <File Type="ROUTE-DRC" Name="lcd_top_drc_routed.rpt"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="lcd_top_routed_bb.dcp"/>
-  <File Type="ROUTE-DCP" Name="lcd_top_routed.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="lcd_top_routed_error.dcp"/>
-  <File Type="PHYSOPT-TIMING" Name="lcd_top_timing_summary_physopted.rpt"/>
-  <File Type="PHYSOPT-DRC" Name="lcd_top_drc_physopted.rpt"/>
-  <File Type="PHYSOPT-DCP" Name="lcd_top_physopt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="lcd_top_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="lcd_top_postplace_pwropt.dcp"/>
-  <File Type="PLACE-RQA-PB" Name="lcd_top_rqa_placed.pb"/>
-  <File Type="PLACE-TIMING" Name="lcd_top_timing_summary_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="lcd_top_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="lcd_top_incremental_reuse_placed.rpt"/>
-  <File Type="PLACE-CTRL" Name="lcd_top_control_sets_placed.rpt"/>
-  <File Type="PLACE-UTIL-PB" Name="lcd_top_utilization_placed.pb"/>
-  <File Type="PLACE-UTIL" Name="lcd_top_utilization_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="lcd_top_clock_utilization_placed.rpt"/>
-  <File Type="PLACE-IO" Name="lcd_top_io_placed.rpt"/>
-  <File Type="PLACE-DCP" Name="lcd_top_placed.dcp"/>
-  <File Type="PWROPT-TIMING" Name="lcd_top_timing_summary_pwropted.rpt"/>
-  <File Type="PWROPT-DRC" Name="lcd_top_drc_pwropted.rpt"/>
-  <File Type="PWROPT-DCP" Name="lcd_top_pwropt.dcp"/>
-  <File Type="OPT-RQA-PB" Name="lcd_top_rqa_opted.pb"/>
-  <File Type="OPT-HWDEF" Name="lcd_top.hwdef"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="lcd_top_methodology_drc_opted.rpt"/>
-  <File Type="OPT-DRC" Name="lcd_top_drc_opted.rpt"/>
-  <File Type="OPT-DCP" Name="lcd_top_opt.dcp"/>
-  <File Type="OPT-TIMING" Name="lcd_top_timing_summary_opted.rpt"/>
-  <File Type="REPORTS-TCL" Name="lcd_top_reports.tcl"/>
-  <File Type="INIT-TIMING" Name="lcd_top_timing_summary_init.rpt"/>
-  <File Type="PA-TCL" Name="lcd_top.tcl"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="min_motor_lcd_top_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="min_motor_lcd_top_postroute_physopt.dcp"/>
+  <File Type="BG-DRC" Name="min_motor_lcd_top.drc"/>
+  <File Type="ROUTE-RQS-PB" Name="min_motor_lcd_top_rqs_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="min_motor_lcd_top_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="min_motor_lcd_top_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW" Name="min_motor_lcd_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="min_motor_lcd_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="min_motor_lcd_top_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="min_motor_lcd_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="min_motor_lcd_top_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="min_motor_lcd_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="min_motor_lcd_top_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="min_motor_lcd_top_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="min_motor_lcd_top_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="min_motor_lcd_top_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="min_motor_lcd_top_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="min_motor_lcd_top_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="min_motor_lcd_top_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="min_motor_lcd_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="min_motor_lcd_top_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="min_motor_lcd_top_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="min_motor_lcd_top_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="min_motor_lcd_top_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="min_motor_lcd_top_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="min_motor_lcd_top_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="min_motor_lcd_top_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="min_motor_lcd_top_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="min_motor_lcd_top_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="min_motor_lcd_top_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="min_motor_lcd_top_postplace_pwropt.dcp"/>
+  <File Type="PLACE-RQA-PB" Name="min_motor_lcd_top_rqa_placed.pb"/>
+  <File Type="PLACE-TIMING" Name="min_motor_lcd_top_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="min_motor_lcd_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="min_motor_lcd_top_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="min_motor_lcd_top_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="min_motor_lcd_top_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="min_motor_lcd_top_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="min_motor_lcd_top_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="min_motor_lcd_top_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="min_motor_lcd_top_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="min_motor_lcd_top_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="min_motor_lcd_top_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="min_motor_lcd_top_pwropt.dcp"/>
+  <File Type="OPT-RQA-PB" Name="min_motor_lcd_top_rqa_opted.pb"/>
+  <File Type="OPT-HWDEF" Name="min_motor_lcd_top.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="min_motor_lcd_top_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="min_motor_lcd_top_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="min_motor_lcd_top_opt.dcp"/>
+  <File Type="OPT-TIMING" Name="min_motor_lcd_top_timing_summary_opted.rpt"/>
+  <File Type="REPORTS-TCL" Name="min_motor_lcd_top_reports.tcl"/>
+  <File Type="INIT-TIMING" Name="min_motor_lcd_top_timing_summary_init.rpt"/>
+  <File Type="PA-TCL" Name="min_motor_lcd_top.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/common.v">
@@ -94,6 +94,20 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/lcd_top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/min_motor_top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/min_motor_lcd_top.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -150,7 +164,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="lcd_top"/>
+      <Option Name="TopModule" Val="min_motor_lcd_top"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">

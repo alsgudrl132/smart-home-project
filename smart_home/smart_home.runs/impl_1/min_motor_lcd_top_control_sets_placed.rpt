@@ -1,0 +1,100 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Wed Aug 27 14:38:35 2025
+| Host         : min running 64-bit Ubuntu 24.04.2 LTS
+| Command      : report_control_sets -verbose -file min_motor_lcd_top_control_sets_placed.rpt
+| Design       : min_motor_lcd_top
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    22 |
+|    Minimum number of control sets                        |    22 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    48 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    22 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     6 |
+| >= 6 to < 8        |     3 |
+| >= 8 to < 10       |     3 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     9 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              29 |            9 |
+| No           | No                    | Yes                    |             236 |           81 |
+| No           | Yes                   | No                     |              48 |           12 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |             167 |           49 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+------------------------------------------------+------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                  Enable Signal                 |          Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+------------------------------------------------+------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | lcd/keypad/ms_10_ed/column_reg[0][0]           | reset_p_IBUF                       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/state_reg[2]_0[0]                | reset_p_IBUF                       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/input_pos_reg[0][0]              | reset_p_IBUF                       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/input_pos_reg[1][0]              | reset_p_IBUF                       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/input_pos_reg[1]_0[0]            | reset_p_IBUF                       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | lcd/keypad/ms_10_ed/ff_cur_reg_0[0]            | reset_p_IBUF                       |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG | lcd/send_byte/send_ed/E[0]                     | reset_p_IBUF                       |                1 |              6 |         6.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/data                             | reset_p_IBUF                       |                4 |              7 |         1.75 |
+|  clk_IBUF_BUFG | lcd/send_byte/master/comm_start_ed/E[0]        | reset_p_IBUF                       |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | lcd/keypad/ms_10_ed/E[0]                       | reset_p_IBUF                       |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/state_reg[0]_0[0]                | reset_p_IBUF                       |                4 |              8 |         2.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/E[0]                             | reset_p_IBUF                       |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | lcd/send_byte/state_reg[6][0]                  | reset_p_IBUF                       |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG |                                                | lcd/btn0/btn_0/count[0]_i_1_n_0    |                4 |             16 |         4.00 |
+|  clk_IBUF_BUFG |                                                | lcd/btn1/btn_0/count[0]_i_1__0_n_0 |                4 |             16 |         4.00 |
+|  clk_IBUF_BUFG |                                                | lcd/btn2/btn_0/count[0]_i_1__1_n_0 |                4 |             16 |         4.00 |
+| ~clk_IBUF_BUFG | lcd/send_byte/us_clk/clk_ed/ff_old_reg_0       | reset_p_IBUF                       |                6 |             22 |         3.67 |
+|  clk_IBUF_BUFG |                                                |                                    |                9 |             29 |         3.22 |
+|  clk_IBUF_BUFG | door/echo_ed/step                              | reset_p_IBUF                       |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | door/pwm_sg90/pwm_freqX128_ed/pwm_freqXn_nedge | reset_p_IBUF                       |                9 |             33 |         3.67 |
+| ~clk_IBUF_BUFG |                                                | reset_p_IBUF                       |               35 |            117 |         3.34 |
+|  clk_IBUF_BUFG |                                                | reset_p_IBUF                       |               46 |            119 |         2.59 |
++----------------+------------------------------------------------+------------------------------------+------------------+----------------+--------------+
+
+

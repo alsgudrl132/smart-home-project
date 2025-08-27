@@ -21,12 +21,13 @@
 
 
 module lcd_top(
-input clk, reset_p,        // 시스템 클럭, 리셋
+    input clk, reset_p,        // 시스템 클럭, 리셋
     input [3:0] btn,           // 버튼 입력 (4개)
     input [3:0] row,           // 키패드 row
     output[3:0] column,        // 키패드 column
     output scl, sda,           // I2C 신호
-    output [15:0] led);        // 상태 확인용 LED
+    output [15:0] led,
+    output reg door_open);        // 상태 확인용 LED
 
     // 버튼의 상승엣지 검출
     wire [3:0] btn_pedge;
@@ -128,6 +129,7 @@ input clk, reset_p,        // 시스템 클럭, 리셋
     assign led[5] = is_done;
     assign led[6] = busy;
     assign led[7] = star_pressed_once;
+    assign led[8] = door_open;
     
     // 정답 패스워드 초기화 (1234)
     initial begin
@@ -140,6 +142,7 @@ input clk, reset_p,        // 시스템 클럭, 리셋
     always @(posedge clk, posedge reset_p) begin
         if(reset_p) begin
             next_state = IDLE;
+            door_open = 0;
             init_flag = 0;
             count_clk_e = 0;
             valid_clk_e = 0;
@@ -475,9 +478,11 @@ input clk, reset_p,        // 시스템 클럭, 리셋
                     if(is_done) begin
                         if(valid_sysclk <= 32'd100_000_000_0) begin
                             valid_clk_e = 1;
+                            door_open = 1;
                         end
                         else begin
                             // reset_p를 누른 것과 동일한 효과
+                            door_open = 0;
                             next_state = IDLE;
                             init_flag = 0;
                             count_clk_e = 0;
