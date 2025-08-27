@@ -375,7 +375,7 @@ input clk, reset_p,        // 시스템 클럭, 리셋
                 SEND_SUCCESS: begin
                     if(busy) begin
                         send = 0;
-                        if(cnt_data >= 8) begin  // "SUCCESS!" = 8글자
+                        if(cnt_data >= 12) begin  // "SUCCESS!" = 8글자
                             cnt_data = 0;
                             next_state = IS_DONE;
                             // 시스템 리셋
@@ -388,14 +388,18 @@ input clk, reset_p,        // 시스템 클럭, 리셋
                     else if(!send) begin
                         rs = 1;  // 데이터 모드
                         case(cnt_data)
-                            0: send_buffer = "S";
-                            1: send_buffer = "U";
-                            2: send_buffer = "C";
-                            3: send_buffer = "C";
-                            4: send_buffer = "E";
-                            5: send_buffer = "S";
-                            6: send_buffer = "S";
-                            7: send_buffer = "!";
+                            0: send_buffer = " ";
+                            1: send_buffer = " ";
+                            2: send_buffer = " ";
+                            3: send_buffer = " ";
+                            4: send_buffer = "S";
+                            5: send_buffer = "U";
+                            6: send_buffer = "C";
+                            7: send_buffer = "C";
+                            8: send_buffer = "E";
+                            9: send_buffer = "S";
+                            10: send_buffer = "S";
+                            11: send_buffer = "!";
                         endcase
                         send = 1;
                         cnt_data = cnt_data + 1;
@@ -408,7 +412,7 @@ input clk, reset_p,        // 시스템 클럭, 리셋
                 SEND_FAIL: begin
                     if(busy) begin
                         send = 0;
-                        if(cnt_data >= 6) begin  // "WRONG!" = 6글자
+                        if(cnt_data >= 11) begin  // "WRONG!" = 6글자
                             cnt_data = 0;
                             next_state = IS_WRONG;  // 다시 언더바 출력
                             // 시스템 부분 리셋
@@ -421,12 +425,17 @@ input clk, reset_p,        // 시스템 클럭, 리셋
                     else if(!send) begin
                         rs = 1;  // 데이터 모드
                         case(cnt_data)
-                            0: send_buffer = "W";
-                            1: send_buffer = "R";
-                            2: send_buffer = "O";
-                            3: send_buffer = "N";
-                            4: send_buffer = "G";
-                            5: send_buffer = "!";
+                            0: send_buffer = " ";
+                            1: send_buffer = " ";
+                            2: send_buffer = " ";
+                            3: send_buffer = " ";
+                            4: send_buffer = " ";
+                            5: send_buffer = "W";
+                            6: send_buffer = "R";
+                            7: send_buffer = "O";
+                            8: send_buffer = "N";
+                            9: send_buffer = "G";
+                            10: send_buffer = "!";
                         endcase
                         send = 1;
                         cnt_data = cnt_data + 1;
