@@ -1351,3 +1351,55 @@ module pwm_Nfreq_Nstep(
     end
     
 endmodule
+
+module smart_watch (
+    input clk,
+    input reset_p,
+    input btn_mode,
+    input inc_sec,
+    input inc_min,
+    output reg [7:0] sec,
+    output reg [7:0] min,
+    output reg set_watch
+);
+
+    // 시스템 클럭 카운터
+    reg [35:0] cnt_sysclk;
+
+    // 모드 전환
+    always @(posedge clk or posedge reset_p) begin
+        if (reset_p)
+            set_watch <= 0;
+        else if (btn_mode)
+            set_watch <= ~set_watch;
+    end
+
+    // 시계 동작
+    always @(posedge clk or posedge reset_p) begin
+        if (reset_p) begin
+            cnt_sysclk <= 0;
+            sec <= 0;
+            min <= 0;
+        end else begin
+            if (set_watch) begin
+                if (cnt_sysclk >= 36'd600_000_000_0-1) begin
+                    cnt_sysclk <= 0;
+                    if (sec >= 59) begin
+                        sec <= 0;
+                        if (min >= 23)
+                            min <= 0;
+                        else
+                            min <= min + 1;
+                    end else
+                        sec <= sec + 1;
+                end else
+                    cnt_sysclk <= cnt_sysclk + 1;
+            end
+
+            if (inc_sec && !set_watch)
+                sec <= (sec >= 59) ? 0 : sec + 1;
+            if (inc_min && !set_watch)
+                min <= (min >= 23) ? 0 : min + 1;
+        end
+    end
+endmodule
