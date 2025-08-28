@@ -7,4 +7,4 @@
 # Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 #
 
-vivado -log lcd_dht11_watch_top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source lcd_dht11_watch_top.tcl -notrace
+vivado -log main_top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source main_top.tcl -notrace

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1756342991" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/lcd_top.dcp">
-  <File Type="VDS-TIMINGSUMMARY" Name="lcd_dht11_watch_top_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="lcd_dht11_watch_top.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="lcd_dht11_watch_top_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="lcd_dht11_watch_top_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="lcd_dht11_watch_top_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="lcd_dht11_watch_top.vds"/>
-  <File Type="REPORTS-TCL" Name="lcd_dht11_watch_top_reports.tcl"/>
-  <File Type="VDS-TIMING-PB" Name="lcd_dht11_watch_top_timing_summary_synth.pb"/>
-  <File Type="PA-TCL" Name="lcd_dht11_watch_top.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1756368841" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/lcd_top.dcp">
+  <File Type="VDS-TIMINGSUMMARY" Name="main_top_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="main_top.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="main_top_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="main_top_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="main_top_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="main_top.vds"/>
+  <File Type="REPORTS-TCL" Name="main_top_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="main_top_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="main_top.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/common.v">
@@ -25,17 +25,8 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/ultrasonic_top.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/lcd_top.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -43,7 +34,20 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/min_motor_top.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ultrasonic_top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/main_top.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -81,14 +85,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/main_top.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/dht11.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
@@ -99,7 +95,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="lcd_dht11_watch_top"/>
+      <Option Name="TopModule" Val="main_top"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
@@ -131,7 +127,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

@@ -26,9 +26,9 @@ module lcd_dht11_watch_top(
     input [1:0] mode_sel,      // 00: LCD, 01: Watch
     output scl, sda,           // I2C 신호
     output [15:0] led,         // 상태 확인용 LED
+    output is_hot,
     inout dht11_data           // DHT11 데이터 핀
 );
-    wire is_hot;
     // 버튼 상승엣지 검출
     wire [3:0] btn_pedge_raw;
     btn_cntr btn0(clk, reset_p, btn[0], btn_pedge_raw[0]);

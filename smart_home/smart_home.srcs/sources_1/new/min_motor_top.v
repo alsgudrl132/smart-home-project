@@ -38,13 +38,13 @@ module door_motor_top(
             cnt = cnt + 1;
     end
     
-    // cnt[22]의 상승 에지 검출용
+    // cnt[19]의 상승 에지 검출용
     wire cnt_pedge;
     edge_detector_p echo_ed(
         .clk(clk), 
         .reset_p(reset_p), 
-        .cp(cnt[19]),     // cnt[22] 신호를 카운트 기준으로 사용
-        .p_edge(cnt_pedge) // cnt[22] 상승 에지 발생 시 1
+        .cp(cnt[19]),     // cnt[19] 신호를 카운트 기준으로 사용
+        .p_edge(cnt_pedge) // cnt[19] 상승 에지 발생 시 1
     );
     
     // inc_flag: step 증가/감소 방향 결정
@@ -56,7 +56,7 @@ module door_motor_top(
             step = 36;       // 초기 step 값 (서보 PWM 최소 위치)
             inc_flag = 1;    // 처음에는 증가 방향
         end
-        else if(cnt_pedge) begin //  cnt[22] 상승 에지마다 실행
+        else if(cnt_pedge) begin //  cnt[19] 상승 에지마다 실행
             if(door_open) begin
                 if(step < 180) begin
                     step = step + 1;

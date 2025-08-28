@@ -27,17 +27,18 @@ module ultrasonic_top(
     output trig,
     output [7:0] seg_7,
     output [3:0] com,
-    output [15:0] led
+    output is_occupied
 );
-    wire is_occupied;
     wire [7:0] distance_cm;
+    wire [15:0] ultrasonic_led; // 내부용 LED (외부로 출력하지 않음)
+    
     hc_sr04_cntr hcsr04(
         .clk(clk),
         .reset_p(reset_p),
         .echo(echo),
         .trig(trig),
         .distance_cm(distance_cm),
-        .led(led),
+        .led(ultrasonic_led),      // 내부 LED만 연결
         .is_occupied(is_occupied)
     );
     
@@ -47,8 +48,6 @@ module ultrasonic_top(
         .bcd(distance_bcd)           
     );
     
-    assign led[13] = is_occupied;
-    
     fnd_cntr fnd(
         .clk(clk),
         .reset_p(reset_p),
@@ -57,5 +56,4 @@ module ultrasonic_top(
         .seg_7(seg_7),
         .com(com)
     );
-
 endmodule

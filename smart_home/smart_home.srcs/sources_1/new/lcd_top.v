@@ -76,8 +76,6 @@ module lcd_top(
     wire [3:0] key_value;   // 입력된 키 값
     wire key_valid;         // 키 입력 유효 여부
     keypad_door_cntr keypad(clk, reset_p, row, column, key_value, key_valid);
-    
-    assign led[15] = key_valid;   // 키 유효 여부 LED 표시
     assign led[3:0] = row;        // 디버깅용 row 출력
     
     // 키 유효 신호의 상승엣지 검출
@@ -88,15 +86,12 @@ module lcd_top(
         .cp(key_valid),
         .p_edge(key_valid_pedge));
         
-    
-    
-    
     // FSM 상태 정의
     localparam IDLE                 = 8'b0000_0001;
     localparam INIT                 = 8'b0000_0010;
-    localparam SEND_CHARACTER       = 8'b0000_0100;
-    localparam SHIFT_RIGHT_DISPLAY  = 8'b0000_1000;
-    localparam SHIFT_LEFT_DISPLAY   = 8'b0001_0000;
+//    localparam SEND_CHARACTER       = 8'b0000_0100;
+//    localparam SHIFT_RIGHT_DISPLAY  = 8'b0000_1000;
+//    localparam SHIFT_LEFT_DISPLAY   = 8'b0001_0000;
     localparam SEND_UNDERSCORE      = 8'b0010_0000;
     localparam MOVE_TO_FIRST_UNDER  = 8'b0100_0000;  // 첫 번째 언더바로 이동
     localparam SEND_KEY             = 8'b1000_0000;
@@ -126,10 +121,6 @@ module lcd_top(
     reg is_done;
     reg is_wrong;
     
-    assign led[5] = is_done;
-    assign led[6] = busy;
-    assign led[7] = star_pressed_once;
-    assign led[8] = door_open;
     
     // 정답 패스워드 초기화 (1234)
     initial begin
@@ -176,9 +167,9 @@ module lcd_top(
                             is_wrong = 0;
                         end
                         // 버튼/키 입력에 따라 상태 전환
-                        if(btn_pedge[0]) next_state = SEND_CHARACTER;
-                        if(btn_pedge[1]) next_state = SHIFT_RIGHT_DISPLAY;
-                        if(btn_pedge[2]) next_state = SHIFT_LEFT_DISPLAY;
+//                        if(btn_pedge[0]) next_state = SEND_CHARACTER;
+//                        if(btn_pedge[1]) next_state = SHIFT_RIGHT_DISPLAY;
+//                        if(btn_pedge[2]) next_state = SHIFT_LEFT_DISPLAY;
                         if(key_valid_pedge) begin
                             if(key_value == 10) begin  // '*' 키
                                 if(!star_pressed_once) begin  // 첫 번째 '*': 언더바 출력
@@ -233,46 +224,46 @@ module lcd_top(
                     end
                 end
 
-                // 버튼0: "a~z" 순서 출력
-                SEND_CHARACTER: begin
-                    if(busy) begin
-                        next_state = IDLE;
-                        send = 0;
-                        if(cnt_data >= 25) cnt_data = 0;
-                        cnt_data = cnt_data + 1;
-                    end
-                    else begin
-                        rs = 1;  // 데이터 모드
-                        send_buffer = "a" + cnt_data;
-                        send = 1;
-                    end
-                end
+//                // 버튼0: "a~z" 순서 출력
+//                SEND_CHARACTER: begin
+//                    if(busy) begin
+//                        next_state = IDLE;
+//                        send = 0;
+//                        if(cnt_data >= 25) cnt_data = 0;
+//                        cnt_data = cnt_data + 1;
+//                    end
+//                    else begin
+//                        rs = 1;  // 데이터 모드
+//                        send_buffer = "a" + cnt_data;
+//                        send = 1;
+//                    end
+//                end
 
-                // 버튼1: 화면 오른쪽 이동
-                SHIFT_RIGHT_DISPLAY: begin
-                    if(busy) begin
-                        next_state = IDLE;
-                        send = 0;
-                    end
-                    else begin
-                        rs = 0;          // 명령 모드
-                        send_buffer = 8'h1c;
-                        send = 1;
-                    end
-                end
+//                // 버튼1: 화면 오른쪽 이동
+//                SHIFT_RIGHT_DISPLAY: begin
+//                    if(busy) begin
+//                        next_state = IDLE;
+//                        send = 0;
+//                    end
+//                    else begin
+//                        rs = 0;          // 명령 모드
+//                        send_buffer = 8'h1c;
+//                        send = 1;
+//                    end
+//                end
 
-                // 버튼2: 화면 왼쪽 이동
-                SHIFT_LEFT_DISPLAY: begin
-                    if(busy) begin
-                        next_state = IDLE;
-                        send = 0;
-                    end
-                    else begin
-                        rs = 0;
-                        send_buffer = 8'h18;
-                        send = 1;
-                    end
-                end
+//                // 버튼2: 화면 왼쪽 이동
+//                SHIFT_LEFT_DISPLAY: begin
+//                    if(busy) begin
+//                        next_state = IDLE;
+//                        send = 0;
+//                    end
+//                    else begin
+//                        rs = 0;
+//                        send_buffer = 8'h18;
+//                        send = 1;
+//                    end
+//                end
                 
                 // '*' 키 첫 번째: "      ____" 출력
                 SEND_UNDERSCORE: begin

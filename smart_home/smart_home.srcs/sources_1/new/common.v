@@ -526,17 +526,17 @@ endmodule
 module hc_sr04_cntr(
     input clk,
     input reset_p,
-    input echo,                  // HC-SR04 Echo 입력
-    output reg trig,             // HC-SR04 Trig 출력
-    output reg [7:0] distance_cm,// 측정된 거리 (cm)
-    output [15:0] led,           // 디버깅용 LED 출력
+    input echo,                  
+    output reg trig,             
+    output reg [7:0] distance_cm,
+    output [15:0] led,           
     output reg is_occupied
 );
     // FSM 상태 정의
-    localparam S_IDLE   = 4'b0001; // 대기 상태
-    localparam S_SEND   = 4'b0010; // Trig 신호 송신
-    localparam S_RECIVE = 4'b0100; // Echo 신호 수신
-    localparam S_END    = 4'b1000; // 거리 계산
+    localparam S_IDLE   = 4'b0001; 
+    localparam S_SEND   = 4'b0010; 
+    localparam S_RECIVE = 4'b0100; 
+    localparam S_END    = 4'b1000; 
     
     // 1us 단위 클럭 생성
     wire clk_usec_pedge;
@@ -546,8 +546,8 @@ module hc_sr04_cntr(
         .nedge_div_100(clk_usec_pedge)
     );
     
-    reg [21:0] count_usec, start_usec, div_usec_58;    // 마이크로초 카운터
-    reg count_usec_e, div_usec_e;         // 카운터 enable
+    reg [21:0] count_usec, start_usec, div_usec_58;    
+    reg count_usec_e, div_usec_e;         
     
     // 마이크로초 카운터
     always @(negedge clk or posedge reset_p) begin
@@ -580,17 +580,17 @@ module hc_sr04_cntr(
         .clk(clk), 
         .reset_p(reset_p), 
         .cp(echo),
-        .p_edge(echo_pedge),  // 상승 엣지
-        .n_edge(echo_nedge)   // 하강 엣지
+        .p_edge(echo_pedge),  
+        .n_edge(echo_nedge)   
     );
     
     // FSM 상태 레지스터
     reg [3:0] state, next_state;
-    reg [21:0] echo_width;    // Echo 신호 폭 저장
+    reg [21:0] echo_width;    
     
-    assign led[3:0] = state;  // 하위 4비트: 상태 표시
-    assign led[15] = echo;    // Echo 입력 상태 표시
-    assign led[14] = trig;    // Trig 출력 상태 표시
+    assign led[3:0] = state;  
+    assign led[15] = echo;    
+    assign led[14] = trig;    
     
     // 상태 전이
     always @(negedge clk or posedge reset_p) begin
@@ -612,7 +612,7 @@ module hc_sr04_cntr(
                 S_IDLE: begin
                     trig <= 0;
                     count_usec_e <= 1;
-                    if(count_usec > 22'd60_000) begin   // 60ms 대기
+                    if(count_usec > 22'd60_000) begin   
                         count_usec_e <= 0;
                         next_state <= S_SEND;
                     end
@@ -620,7 +620,7 @@ module hc_sr04_cntr(
                 S_SEND: begin
                     trig <= 1;
                     count_usec_e <= 1;
-                    if(count_usec > 22'd10) begin       // 10us Trig 신호
+                    if(count_usec > 22'd10) begin       
                         trig <= 0;
                         count_usec_e <= 0;
                         next_state <= S_RECIVE;
@@ -628,21 +628,22 @@ module hc_sr04_cntr(
                 end
                 S_RECIVE: begin
                     count_usec_e <= 1;
-                    if(count_usec > 22'd100_000) begin  // 100ms 타임아웃
+                    if(count_usec > 22'd100_000) begin  
                         next_state <= S_IDLE;
                     end
                     if(echo_pedge) begin
                         div_usec_e = 1;
                     end
-                    else if(echo_nedge) begin// Echo 신호 Low
+                    else if(echo_nedge) begin
                         distance_cm = distance_cnt;
                         div_usec_e = 0;
                         next_state <= S_END;
                     end 
-                    if(distance_cm <= 12) is_occupied = 1;
-                    else is_occupied = 0;
                 end
                 S_END: begin
+                    // 거리 기준 점유 상태 업데이트를 S_END에서 수행
+                    if(distance_cm <= 12) is_occupied <= 1;
+                    else is_occupied <= 0;
                     next_state <= S_IDLE;
                 end
                 default: next_state <= S_IDLE;
@@ -847,22 +848,22 @@ module keypad_door_cntr(
                 KEY_PROCESS: begin   
                     key_valid = 1; // 키가 눌린 경우
                     case({column, row}) // 눌린 key mapping
-                        8'b0001_0001 : key_value = 4'hC; 
-                        8'b0001_0010 : key_value = 4'hC; 
-                        8'b0001_0100 : key_value = 4'hC; 
-                        8'b0001_1000 : key_value = 4'hC; 
-                        8'b0010_0001 : key_value = 4'h3; 
-                        8'b0010_0010 : key_value = 4'h6; 
-                        8'b0010_0100 : key_value = 4'h9; 
-                        8'b0010_1000 : key_value = 4'hB; 
-                        8'b0100_0001 : key_value = 4'h2; 
-                        8'b0100_0010 : key_value = 4'h5; 
-                        8'b0100_0100 : key_value = 4'h8; 
-                        8'b0100_1000 : key_value = 4'h0; 
-                        8'b1000_0001 : key_value = 4'h1; 
-                        8'b1000_0010 : key_value = 4'h4; 
-                        8'b1000_0100 : key_value = 4'h7; 
-                        8'b1000_1000 : key_value = 4'hA; 
+                        8'b0001_0001 : key_value = 4'hC; // C
+                        8'b0001_0010 : key_value = 4'hC; // C
+                        8'b0001_0100 : key_value = 4'h0; // C
+                        8'b0001_1000 : key_value = 4'hA; // C
+                        8'b0010_0001 : key_value = 4'hC; // 3
+                        8'b0010_0010 : key_value = 4'h9; // 6
+                        8'b0010_0100 : key_value = 4'h8; // 9
+                        8'b0010_1000 : key_value = 4'h7; // B
+                        8'b0100_0001 : key_value = 4'hC; // 2
+                        8'b0100_0010 : key_value = 4'h6; // 5
+                        8'b0100_0100 : key_value = 4'h5; // 8
+                        8'b0100_1000 : key_value = 4'h4; // 0
+                        8'b1000_0001 : key_value = 4'hC; // 1
+                        8'b1000_0010 : key_value = 4'h3; // 4
+                        8'b1000_0100 : key_value = 4'h2; // 7
+                        8'b1000_1000 : key_value = 4'h1; // A
                     endcase
                 end                   
             endcase

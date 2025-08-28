@@ -28,7 +28,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log lcd_dht11_watch_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source lcd_dht11_watch_top.tcl" );
+         "-log main_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source main_top.tcl" );
 
 
 
