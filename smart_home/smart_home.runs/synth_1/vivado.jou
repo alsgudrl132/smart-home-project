@@ -3,22 +3,22 @@
 # SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Wed Aug 27 14:36:54 2025
-# Process ID         : 271386
+# Start of session at: Thu Aug 28 10:03:16 2025
+# Process ID         : 426066
 # Current directory  : /home/psh/smart_home_project/smart_home/smart_home.runs/synth_1
-# Command line       : vivado -log min_motor_lcd_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source min_motor_lcd_top.tcl
-# Log file           : /home/psh/smart_home_project/smart_home/smart_home.runs/synth_1/min_motor_lcd_top.vds
+# Command line       : vivado -log lcd_dht11_watch_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source lcd_dht11_watch_top.tcl
+# Log file           : /home/psh/smart_home_project/smart_home/smart_home.runs/synth_1/lcd_dht11_watch_top.vds
 # Journal file       : /home/psh/smart_home_project/smart_home/smart_home.runs/synth_1/vivado.jou
 # Running On         : min
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.2 LTS
 # Processor Detail   : Intel(R) Core(TM) i5-1035G7 CPU @ 1.20GHz
-# CPU Frequency      : 2974.610 MHz
+# CPU Frequency      : 3150.235 MHz
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 16396 MB
 # Swap memory        : 4294 MB
 # Total Virtual      : 20691 MB
-# Available Virtual  : 12517 MB
+# Available Virtual  : 11163 MB
 #-----------------------------------------------------------
-source min_motor_lcd_top.tcl -notrace
+source lcd_dht11_watch_top.tcl -notrace

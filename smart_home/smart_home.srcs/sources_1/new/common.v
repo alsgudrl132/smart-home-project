@@ -296,7 +296,8 @@ module dht11_cntr(
     inout dht11_data,            // DHT11 데이터 핀 (양방향)
     output reg [7:0] humidity,   // 습도 값
     output reg [7:0] temperature,// 온도 값
-    output [15:0] led            // 디버깅용 LED 출력
+    output [15:0] led,           // 디버깅용 LED 출력
+    output reg is_hot
 );
 
     //===================================================
@@ -379,6 +380,7 @@ module dht11_cntr(
             data_count = 0;
             dht11_data_out_e = 0;
             read_state = S_WAIT_PEDGE;
+            is_hot = 0;
         end
         else begin
             case(state)
@@ -497,6 +499,8 @@ module dht11_cntr(
                         if(temp_data[39:32] + temp_data[31:24] + temp_data[23:16] + temp_data[15:8] == temp_data[7:0]) begin
                             humidity = temp_data[39:32];
                             temperature = temp_data[23:16];
+                            if(temperature >= 30) is_hot = 1;
+                            else is_hot = 0;
                         end
                     end
                 end
@@ -525,7 +529,8 @@ module hc_sr04_cntr(
     input echo,                  // HC-SR04 Echo 입력
     output reg trig,             // HC-SR04 Trig 출력
     output reg [7:0] distance_cm,// 측정된 거리 (cm)
-    output [15:0] led            // 디버깅용 LED 출력
+    output [15:0] led,           // 디버깅용 LED 출력
+    output reg is_occupied
 );
     // FSM 상태 정의
     localparam S_IDLE   = 4'b0001; // 대기 상태
@@ -600,6 +605,7 @@ module hc_sr04_cntr(
             trig <= 0;
             count_usec_e <= 0;
             distance_cm <= 0;
+            is_occupied <= 0;
         end
         else begin
             case(state)
@@ -633,6 +639,8 @@ module hc_sr04_cntr(
                         div_usec_e = 0;
                         next_state <= S_END;
                     end 
+                    if(distance_cm <= 12) is_occupied = 1;
+                    else is_occupied = 0;
                 end
                 S_END: begin
                     next_state <= S_IDLE;

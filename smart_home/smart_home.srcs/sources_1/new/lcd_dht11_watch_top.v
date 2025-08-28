@@ -28,7 +28,7 @@ module lcd_dht11_watch_top(
     output [15:0] led,         // 상태 확인용 LED
     inout dht11_data           // DHT11 데이터 핀
 );
-
+    wire is_hot;
     // 버튼 상승엣지 검출
     wire [3:0] btn_pedge_raw;
     btn_cntr btn0(clk, reset_p, btn[0], btn_pedge_raw[0]);
@@ -52,6 +52,7 @@ module lcd_dht11_watch_top(
     assign inc_sec  = (mode_sel == 2'b01) ? btn_pedge_raw[0] : 1'b0;
     assign inc_min  = (mode_sel == 2'b01) ? btn_pedge_raw[1] : 1'b0;
     assign btn_mode = (mode_sel == 2'b01) ? btn_pedge_raw[2] : 1'b0;
+    
 
     // ---------------------------
     // Watch 모듈
@@ -97,8 +98,11 @@ module lcd_dht11_watch_top(
         .dht11_data(dht11_data),
         .humidity(humidity),
         .temperature(temperature),
+        .is_hot(is_hot),
         .led() // LED는 LCD 모듈에서 사용
     );
+    
+    assign led[12] = is_hot;
 
     // FSM 상태 정의
     localparam IDLE                 = 6'b00_0001;
