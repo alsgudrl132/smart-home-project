@@ -25,7 +25,10 @@ module main_top(
     input [3:0] btn,     
     input [1:0] mode_sel,
     input echo,
-    input [3:0] row,           
+    input [3:0] row,   
+    input vauxp6, vauxn6, vauxp14, vauxn14,
+    input door_btn,
+    output servo_out, led_b, led_r,       
     output[3:0] column,        
     output scl, sda,
     output trig,
@@ -37,12 +40,13 @@ module main_top(
     output sg90,
     inout dht11_data);
     
-    wire is_hot, is_occupied, door_open;
+    wire is_hot, is_occupied, door_open, btn_signal;
     
-    lcd_dht11_watch_top(.clk(clk), .reset_p(reset_p), .btn(btn), .mode_sel(mode_sel), .scl(inner_scl), .sda(inner_sda), .led(led), .is_hot(is_hot), .dht11_data(dht11_data));
-    ultrasonic_top(clk, reset_p, echo, trig, seg_7, com, is_occupied);
-    lcd_top lcd(clk, reset_p, btn, row, column, scl, sda, led, door_open);
-    door_motor_top door(clk, reset_p, door_open, sg90);  
+    lcd_dht11_watch_top(.clk(clk), .reset_p(reset_p), .btn(btn), .mode_sel(mode_sel), .scl(inner_scl), .sda(inner_sda), .is_hot(is_hot), .dht11_data(dht11_data));
+    ultrasonic_top(clk, reset_p, echo, trig, is_occupied);
+    lcd_top lcd(clk, reset_p, btn, row, column, scl, sda);
+    door_motor_top door(clk, reset_p, door_open, door_btn, btn_signal, sg90);  
+    adc_sequence2_top sh(clk, reset_p, vauxp6, vauxn6, vauxp14, vauxn14, servo_out, seg_7, com, led_b, led_r, led);
     
     // 신호 안정화를 위한 레지스터들
     reg [23:0] stable_counter;      // 더 긴 안정화 시간
@@ -50,10 +54,10 @@ module main_top(
     reg motor_enable;
     
     // 디버깅용 LED 할당
-    assign led[10] = is_hot;      // 온도 상태 확인
-    assign led[9] = is_occupied;  // 거리 상태 확인
-    assign led[11] = motor_on;    // 모터 상태
-    assign led[8] = motor_enable; // 내부 motor_enable 상태
+//    assign led[10] = is_hot;      // 온도 상태 확인
+//    assign led[11] = motor_on;    // 모터 상태
+//    assign led[9] = is_occupied;  // 거리 상태 확인
+//    assign led[8] = motor_enable; // 내부 motor_enable 상태
     
     // 1초 약간 안정화를 위한 파라미터 (100MHz 기준)
     localparam STABLE_TIME = 24'd10_000_000;  // 0.1초

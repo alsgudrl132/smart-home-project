@@ -86,6 +86,8 @@ module lcd_top(
         .cp(key_valid),
         .p_edge(key_valid_pedge));
         
+
+        
     // FSM 상태 정의
     localparam IDLE                 = 8'b0000_0001;
     localparam INIT                 = 8'b0000_0010;
