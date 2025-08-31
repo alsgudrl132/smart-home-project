@@ -76,7 +76,7 @@ module lcd_top(
     wire [3:0] key_value;   // 입력된 키 값
     wire key_valid;         // 키 입력 유효 여부
     keypad_door_cntr keypad(clk, reset_p, row, column, key_value, key_valid);
-    assign led[3:0] = row;        // 디버깅용 row 출력
+//    assign led[3:0] = row;        // 디버깅용 row 출력
     
     // 키 유효 신호의 상승엣지 검출
     wire key_valid_pedge;

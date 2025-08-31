@@ -1,25 +1,3 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08/26/2025 02:10:54 PM
-// Design Name: 
-// Module Name: main_top
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 module main_top(
     input clk, reset_p,  
     input [3:0] btn,     
@@ -42,24 +20,78 @@ module main_top(
     
     wire is_hot, is_occupied, door_open, btn_signal;
     
-    lcd_dht11_watch_top(.clk(clk), .reset_p(reset_p), .btn(btn), .mode_sel(mode_sel), .scl(inner_scl), .sda(inner_sda), .is_hot(is_hot), .dht11_data(dht11_data));
-    ultrasonic_top(clk, reset_p, echo, trig, is_occupied);
-    lcd_top lcd(clk, reset_p, btn, row, column, scl, sda);
-    door_motor_top door(clk, reset_p, door_open, door_btn, btn_signal, sg90);  
-    adc_sequence2_top sh(clk, reset_p, vauxp6, vauxn6, vauxp14, vauxn14, servo_out, seg_7, com, led_b, led_r, led);
+    // 올바른 모듈 인스턴스화
+    lcd_dht11_watch_top lcd_dht11(
+        .clk(clk), 
+        .reset_p(reset_p), 
+        .btn(btn), 
+        .mode_sel(mode_sel), 
+        .scl(inner_scl), 
+        .sda(inner_sda), 
+        .is_hot(is_hot), 
+        .dht11_data(dht11_data)
+    );
+    
+    // 초음파 센서 모듈 - 올바른 인스턴스화
+    ultrasonic_top ultra_inst(
+        .clk(clk),
+        .reset_p(reset_p), 
+        .echo(echo),
+        .trig(trig),
+        .seg_7(seg_7),
+        .com(com),
+        .is_occupied(is_occupied)  // 마지막 포트
+    );
+    
+    // LCD 키패드 모듈 - 올바른 인스턴스화 (포트 순서대로)
+    lcd_top lcd_inst(
+        .clk(clk), 
+        .reset_p(reset_p), 
+        .btn(btn), 
+        .row(row), 
+        .column(column), 
+        .scl(scl), 
+        .sda(sda), 
+        .led(led),
+        .door_open(door_open)
+    );
+    
+    // 도어 모터 모듈 - 올바른 인스턴스화
+    door_motor_top door_inst(
+        .clk(clk), 
+        .reset_p(reset_p), 
+        .door_open(door_open), 
+        .door_btn(door_btn), 
+        .btn_signal(btn_signal), 
+        .sg90(sg90)
+    );
+    
+    // ADC 모듈 - 올바른 인스턴스화
+    adc_sequence2_top adc_inst(
+        .clk(clk), 
+        .reset_p(reset_p), 
+        .vauxp6(vauxp6), 
+        .vauxn6(vauxn6), 
+        .vauxp14(vauxp14), 
+        .vauxn14(vauxn14), 
+        .servo_out(servo_out), 
+        .led_b(led_b), 
+        .led_r(led_r), 
+        .led(led)
+    );
     
     // 신호 안정화를 위한 레지스터들
-    reg [23:0] stable_counter;      // 더 긴 안정화 시간
-    reg [23:0] motor_off_counter;   // 더 긴 오프 지연
+    reg [23:0] stable_counter;      
+    reg [23:0] motor_off_counter;   
     reg motor_enable;
     
-    // 디버깅용 LED 할당
-//    assign led[10] = is_hot;      // 온도 상태 확인
-//    assign led[11] = motor_on;    // 모터 상태
-//    assign led[9] = is_occupied;  // 거리 상태 확인
-//    assign led[8] = motor_enable; // 내부 motor_enable 상태
+    // 디버깅용 LED 할당 (주석 해제 시 사용)
+    // assign led[10] = is_hot;      
+    // assign led[11] = motor_on;    
+    // assign led[9] = is_occupied;  
+    // assign led[8] = motor_enable; 
     
-    // 1초 약간 안정화를 위한 파라미터 (100MHz 기준)
+    // 안정화 시간 파라미터 (100MHz 기준)
     localparam STABLE_TIME = 24'd10_000_000;  // 0.1초
     localparam OFF_DELAY_TIME = 26'd50_000_000; // 0.5초
     

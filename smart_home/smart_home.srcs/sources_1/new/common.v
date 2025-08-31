@@ -499,7 +499,7 @@ module dht11_cntr(
                         if(temp_data[39:32] + temp_data[31:24] + temp_data[23:16] + temp_data[15:8] == temp_data[7:0]) begin
                             humidity = temp_data[39:32];
                             temperature = temp_data[23:16];
-                            if(temperature >= 30) is_hot = 1;
+                            if(temperature >= 25) is_hot = 1;
                             else is_hot = 0;
                         end
                     end
@@ -642,7 +642,7 @@ module hc_sr04_cntr(
                 end
                 S_END: begin
                     // 거리 기준 점유 상태 업데이트를 S_END에서 수행
-                    if(distance_cm <= 12) is_occupied <= 1;
+                    if(distance_cm <= 8) is_occupied <= 1;
                     else is_occupied <= 0;
                     next_state <= S_IDLE;
                 end
