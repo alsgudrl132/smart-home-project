@@ -18,122 +18,127 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+
+// 도어 버튼 제어 모듈 - 버튼 입력을 10초간 유지하는 기능
 module door_button_top(
-    input clk, reset_p,
-    input door_btn,
-    output reg btn_signal);  
+    input clk, reset_p,      // 시스템 클럭, 리셋 신호
+    input door_btn,          // 도어 버튼 입력 (active low)
+    output reg btn_signal);  // 10초간 유지되는 버튼 신호 출력
     
-    // 버튼 상승 에지 검출을 위한 레지스터
+    // 버튼 상태 변화 감지를 위한 이전 상태 저장 레지스터
     reg door_btn_prev;
     
-    // 10초 타이머 (100MHz 클럭 기준: 10 * 100,000,000 = 1,000,000,000)
+    // 10초 타이머 카운터 (100MHz 클럭 기준: 10초 = 1,000,000,000 클럭)
     reg [31:0] timer_counter;
-    localparam TIMER_10SEC = 32'd1_000_000_000;  // 10초
+    localparam TIMER_10SEC = 32'd1_000_000_000;  // 10초 상수 정의
     
-    // 버튼 상승 에지 검출 (버튼이 눌린 순간)
+    // 버튼 하강 에지 검출 (버튼이 눌린 순간 감지)
     wire btn_pressed;
-    assign btn_pressed = door_btn_prev && !door_btn;  // falling edge 검출
+    assign btn_pressed = door_btn_prev && !door_btn;  // 이전=1, 현재=0 일때 눌림
     
     always @(posedge clk, posedge reset_p) begin
         if(reset_p) begin
+            // 리셋 시 초기화
             btn_signal <= 0;
-            door_btn_prev <= 1;  // 초기값은 1 (버튼이 안 눌린 상태)
+            door_btn_prev <= 1;  // 버튼 초기상태는 1 (안 눌린 상태)
             timer_counter <= 0;
         end
         else begin
-            door_btn_prev <= door_btn;  // 이전 상태 저장
+            door_btn_prev <= door_btn;  // 현재 버튼 상태를 이전 상태로 저장
             
-            // 버튼이 눌렸을 때
+            // 버튼이 눌렸을 때 처리
             if(btn_pressed) begin
-                btn_signal <= 1;
-                timer_counter <= 0;  // 타이머 리셋
+                btn_signal <= 1;        // 출력 신호 활성화
+                timer_counter <= 0;     // 타이머 초기화
             end
-            // btn_signal이 1인 상태에서 타이머 동작
+            // btn_signal이 활성화된 상태에서 10초 카운트
             else if(btn_signal) begin
                 if(timer_counter < TIMER_10SEC) begin
-                    timer_counter <= timer_counter + 1;
+                    timer_counter <= timer_counter + 1;  // 1클럭씩 증가
                 end
                 else begin
-                    btn_signal <= 0;  // 10초 후 신호를 0으로
-                    timer_counter <= 0;
+                    btn_signal <= 0;        // 10초 경과 후 신호 비활성화
+                    timer_counter <= 0;     // 카운터 초기화
                 end
             end
         end
     end
 endmodule
 
+// 도어 서보 모터 제어 메인 모듈
 module door_motor_top(
-    input clk,          // 시스템 클럭 입력 (예: 100MHz)
-    input reset_p,      // 비동기 리셋 신호, 1로 들어오면 초기화
-    input door_open,    // 문 열림 신호
-    input door_btn,
-    output btn_signal,  // 출력 포트
-    output sg90         // SG90 서보 모터 PWM 출력
+    input clk,          // 시스템 클럭 입력 (100MHz)
+    input reset_p,      // 비동기 리셋 신호 (active high)
+    input door_open,    // 외부 문 열림 신호 (패스워드 시스템에서)
+    input door_btn,     // 내부 문 열림 버튼
+    output btn_signal,  // 버튼 신호 상태 출력
+    output sg90         // SG90 서보 모터 PWM 제어 신호
 );
-    // step: 서보 위치를 나타내는 값
-    // cnt: 펄스 생성용 카운터
-    integer step, cnt;
+    // 서보 모터 위치 제어 변수
+    integer step, cnt;   // step: 서보 각도값, cnt: 타이밍 생성용 카운터
     
-    // btn_signal을 내부 wire로 선언
+    // 버튼 신호를 내부에서 처리하기 위한 wire
     wire btn_signal_internal;
-    assign btn_signal = btn_signal_internal;  // 출력 포트에 할당
+    assign btn_signal = btn_signal_internal;  // 내부 신호를 출력 포트에 연결
     
-    // 1클럭마다 cnt 증가 - reset 조건 추가
+    // 메인 카운터 - 서보 모터 제어 타이밍 생성
     always @(posedge clk or posedge reset_p) begin
         if(reset_p)
             cnt = 0;
         else
-            cnt = cnt + 1;
+            cnt = cnt + 1;  // 매 클럭마다 1씩 증가
     end
     
-    // cnt[19]의 상승 에지 검출용
+    // cnt[19] 비트의 상승 에지 검출 (약 5.24ms 주기)
     wire cnt_pedge;
     edge_detector_p echo_ed(
         .clk(clk), 
         .reset_p(reset_p), 
-        .cp(cnt[19]),     // cnt[19] 신호를 카운트 기준으로 사용
-        .p_edge(cnt_pedge) // cnt[19] 상승 에지 발생 시 1
+        .cp(cnt[19]),        // cnt의 19번째 비트를 주기 신호로 사용
+        .p_edge(cnt_pedge)   // 상승 에지 발생시 1클럭 펄스 생성
     );
     
-    // door_button_top 인스턴스 - 내부 wire에 연결
+    // 도어 버튼 제어 모듈 인스턴스
     door_button_top door_button(
         .clk(clk), 
         .reset_p(reset_p), 
-        .door_btn(door_btn), 
-        .btn_signal(btn_signal_internal)  // 내부 wire에 연결
+        .door_btn(door_btn),                    // 물리적 버튼 입력
+        .btn_signal(btn_signal_internal)        // 10초 유지 신호 출력
     );
     
-    // inc_flag: step 증가/감소 방향 결정
+    // 서보 모터 회전 방향 제어 플래그 (현재 미사용)
     reg inc_flag;
     
-    // step 값 업데이트 - 내부 wire 사용
+    // 서보 모터 step 값 제어 로직
     always @(posedge clk or posedge reset_p) begin
         if(reset_p) begin
-            step = 36;       // 초기 step 값 (서보 PWM 최소 위치)
-            inc_flag = 1;    // 처음에는 증가 방향
+            step = 36;       // 서보 초기 위치 (0도 근처)
+            inc_flag = 1;    // 증가 방향 초기값
         end
-        else if(cnt_pedge) begin //  cnt[19] 상승 에지마다 실행
-            if(door_open || btn_signal_internal) begin  // 내부 wire 사용
+        else if(cnt_pedge) begin // 약 5.24ms마다 실행
+            // 문을 열어야 하는 조건: 외부 신호 OR 내부 버튼 신호
+            if(door_open || btn_signal_internal) begin  
                 if(step < 180) begin
-                    step = step + 1;
+                    step = step + 1;  // 서보를 열림 방향으로 회전 (최대 180도)
                 end
             end
+            // 문을 닫아야 하는 조건: 두 신호 모두 비활성화
             else begin
                 if(step > 36) begin
-                    step = step - 1;
+                    step = step - 1;  // 서보를 닫힘 방향으로 회전
                 end
             end
         end
     end
     
-    // PWM 생성 모듈 인스턴스
+    // SG90 서보모터용 PWM 생성 모듈
     pwm_Nfreq_Nstep #(
-        .pwm_freq(50),       // SG90 서보 기준 PWM 주파수 50Hz
-        .duty_step_N(1440)   // step 최대값 설정 (PWM 분해능)
+        .pwm_freq(50),       // 서보모터 표준 PWM 주파수 50Hz
+        .duty_step_N(1440)   // PWM duty cycle 분해능 (0~1440)
     ) pwm_sg90(
         .clk(clk), 
         .reset_p(reset_p), 
-        .duty(step), 
-        .pwm(sg90)
+        .duty(step),         // 현재 서보 위치값
+        .pwm(sg90)          // PWM 신호 출력
     );    
 endmodule
