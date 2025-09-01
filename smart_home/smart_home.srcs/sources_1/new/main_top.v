@@ -52,7 +52,6 @@ module main_top(
         .column(column), 
         .scl(scl), 
         .sda(sda), 
-        .led(led),
         .door_open(door_open)
     );
     
@@ -76,24 +75,27 @@ module main_top(
         .vauxn14(vauxn14), 
         .servo_out(servo_out), 
         .led_b(led_b), 
-        .led_r(led_r), 
-        .led(led)
+        .led_r(led_r)
     );
     
-    // 신호 안정화를 위한 레지스터들
+    // 신호 안정화를 위한 레지스터들 - 비트폭 수정
     reg [23:0] stable_counter;      
-    reg [23:0] motor_off_counter;   
+    reg [25:0] motor_off_counter;   // 26비트로 수정
     reg motor_enable;
     
-    // 디버깅용 LED 할당 (주석 해제 시 사용)
-    // assign led[10] = is_hot;      
-    // assign led[11] = motor_on;    
-    // assign led[9] = is_occupied;  
-    // assign led[8] = motor_enable; 
+    // 디버깅용 LED 할당 - 더 많은 신호 모니터링
+    assign led[10] = is_hot;      
+    assign led[11] = motor_on;    
+    assign led[9] = is_occupied;  
+    assign led[8] = motor_enable; 
+    assign led[7] = (stable_counter > 0); // 안정화 카운터 동작 확인
+    assign led[6] = (motor_off_counter > 0); // 오프 카운터 동작 확인
+    assign led[5] = (is_hot && is_occupied); // 두 조건 AND 결과
+    assign led[15:12] = stable_counter[23:20]; // 상위 4비트 표시
     
     // 안정화 시간 파라미터 (100MHz 기준)
     localparam STABLE_TIME = 24'd10_000_000;  // 0.1초
-    localparam OFF_DELAY_TIME = 26'd50_000_000; // 0.5초
+    localparam OFF_DELAY_TIME = 26'd50_000_000; // 0.5초 (26비트로 수정)
     
     always @(posedge clk, posedge reset_p) begin
         if(reset_p) begin
@@ -107,7 +109,7 @@ module main_top(
             if(is_hot && is_occupied) begin
                 if(stable_counter < STABLE_TIME) begin
                     stable_counter <= stable_counter + 1;
-                    motor_off_counter <= 0;
+                    motor_off_counter <= 0; // 오프 카운터 리셋
                 end
                 else begin
                     motor_enable <= 1;
@@ -115,7 +117,7 @@ module main_top(
             end
             // 조건이 만족되지 않을 때
             else begin
-                stable_counter <= 0;
+                stable_counter <= 0; // 안정화 카운터 리셋
                 if(motor_enable) begin
                     // 모터가 켜져 있다면 일정 시간 후 끄기
                     if(motor_off_counter < OFF_DELAY_TIME) begin

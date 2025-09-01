@@ -642,7 +642,7 @@ module hc_sr04_cntr(
                 end
                 S_END: begin
                     // 거리 기준 점유 상태 업데이트를 S_END에서 수행
-                    if(distance_cm <= 8) is_occupied <= 1;
+                    if(distance_cm < 7) is_occupied <= 1;
                     else is_occupied <= 0;
                     next_state <= S_IDLE;
                 end
